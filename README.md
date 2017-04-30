@@ -137,7 +137,7 @@ Each determinative of the word is a tuple, which contains dictionaries represent
 
 **The structure of the dictionary is of the following**:  
 
-- detSign\_DetPosition: stores a dictionary with following keys. detSign\_position, totalSigns\_determinative. First one contains the position of the sign inside the determinative. Second one contains total number of signs inside the determinative.
+- detSign\_DetPosition: stores a dictionary with following keys. detSign\_position, totalSigns\_determinative. First one contains the position of the sign inside the determinative. Second one contains total number of signs inside the determinative.   
 - detSign\_WordPosition: stores a dictionary with following keys. detSign\_position, totalSigns\_word. First one stores the position of the sign inside the word. Second one contains total number of signs inside the word.
 - detSign\_det: Stores the string representation of the determinative.
 - detSign\_detMark: Stores a string representation. It can have three values: Inpos, postpos, prepos. Prepos, for determinatives at the beginning of a word. Postpos for determinatives at the end of a word. Inpos for determinatives that are neither at the beginning nor at the end of the word. They maybe used for example for determinatives that follow other determinatives inside a word.
@@ -180,7 +180,7 @@ These are indicated at two levels: at word level and at sign level. Word level r
 
 ## Usage Example:
 
-For now the parser is conceived for documents containing individual texts like in [here] (http://cdli.ucla.edu/search/archival_view.php?ObjectID=P480793 "Random Example from CDLI")
+For now the parser is conceived for documents containing individual texts like in [here](http://cdli.ucla.edu/search/archival_view.php?ObjectID=P480793 "Random Example from CDLI")
 
 For now I am more concerned with fine tuning the parser rather than supporting multiple documents at once, because supporting multiple documents at once is quite easy. I would just need to add couple of lines to initial section getter. 
 
