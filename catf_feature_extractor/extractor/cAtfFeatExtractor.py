@@ -1312,7 +1312,7 @@ class cAtfLineDictBuilder(cAtfLineGetter):
 
 class cAtfALHandler(cAtfALTester):
     """
-    Handle Another Language occurances.
+    Handle Another Language occurrences.
     """
     #
     def __init__(self, cAtf_part):
@@ -1445,7 +1445,7 @@ class cAtfALHandler(cAtfALTester):
     def group_ALRefs(self):
         """
         Groups the AL references for
-        marking the AL occurances
+        marking the AL occurrences
         """
         #
         al_ref_groups = self.grouper(self.alRef_list, 2)
@@ -1462,7 +1462,7 @@ class cAtfALHandler(cAtfALTester):
         return: boolean
         Tests if the AL references
         stocked in the al group
-        points to a AL occurance
+        points to a AL occurrence
         that spreads into multiple
         lines
         """
@@ -1484,7 +1484,7 @@ class cAtfALHandler(cAtfALTester):
         return: boolean
         Tests if the AL references
         stocked in the al group
-        points to a AL occurance
+        points to a AL occurrence
         that is confined to 1 line
         """
         #
@@ -1501,7 +1501,7 @@ class cAtfALHandler(cAtfALTester):
     def populate_mulALOC_refs(self):
         """
         Populates the multiline
-        AL occurance reference list.
+        AL occurrence reference list.
         """
         #
         self.mulAlOc_group_list = []
@@ -1518,7 +1518,7 @@ class cAtfALHandler(cAtfALTester):
     def populate_singALOC_refs(self):
         """
         Populates the single line
-        AL occurance reference list.
+        AL occurrence reference list.
         """
         #
         self.singAlOc_group_list = []
@@ -1555,7 +1555,7 @@ class cAtfALHandler(cAtfALTester):
     def get_mulAlOc_lineDict_list(self):
         """
         Gets the related lineDicts for
-        AL occurances that spread to multiple lines
+        AL occurrences that spread to multiple lines
         """
         #
         self.mulAlOc_lineDict_list = []
@@ -1571,7 +1571,7 @@ class cAtfALHandler(cAtfALTester):
     def get_FW_mulAlOc(mulAlOc_group):
         """
         Gets the First Word and its position of the
-        AL Occurance that spreads to multiple
+        AL Occurrence that spreads to multiple
         lines.
         """
         #
@@ -1594,7 +1594,7 @@ class cAtfALHandler(cAtfALTester):
     def get_LW_mulAlOc(mulAlOc_group):
         """
         Gets the Last Word and its position of
-        the AL Occurance that spreads to multiple
+        the AL Occurrence that spreads to multiple
         lines
         """
         #
@@ -1615,7 +1615,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def get_ALOC_lang(self,alOc):
         """
-        Gets the AL occurance language
+        Gets the AL occurrence language
         if it has one specified with
         %,
         if not, we get the specified AL language
@@ -1638,11 +1638,11 @@ class cAtfALHandler(cAtfALTester):
         last_item, ()
         mulAlOc_group, [{},{}, ... ]
 
-        Creates multiline AL Occurance from the parameters.
-        alWord_word, str. Another Language word in AL_occurance
+        Creates multiline AL Occurrence from the parameters.
+        alWord_word, str. Another Language word in AL_occurrence
         alWord_LineNumber, int. The line number for the al_word
-        alWord_AlOc_Position, dict. Relative position of the alWord inside the AL_occurance.
-        alWord_AlOc, str. Al_occurance in which the al_word is observed
+        alWord_AlOc_Position, dict. Relative position of the alWord inside the AL_occurrence.
+        alWord_AlOc, str. Al_occurrence in which the al_word is observed
         alWord_AlOc_LineNumber, list. Line number(s) in which the al_oc is observed
         alWord_LinePosition, dict. Relative position of the alWord inside the Line.
 
@@ -1698,7 +1698,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def get_mulAlOcS(self):
         """
-        Gets the AL Occurances that spread into multiple lines
+        Gets the AL Occurrences that spread into multiple lines
         as lists of another language word dictionary
         """
         #
@@ -1718,7 +1718,7 @@ class cAtfALHandler(cAtfALTester):
         """
         params: lineWP, ()
         Gets the starting point and
-        end point of the AL Occurance observed
+        end point of the AL Occurrence observed
         in a single line
 
         """
@@ -1734,7 +1734,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def group_ALRef_sing_Wordlevel(self, alRef_WP_list):
         """
-        groups the AL occurance references
+        groups the AL occurrence references
         observed in a single line
         """
         #
@@ -1746,7 +1746,7 @@ class cAtfALHandler(cAtfALTester):
         """
         params: lineDict, {}
         alRef_WP_group, ()
-        Creates the AL occurance from the lineDict,
+        Creates the AL occurrence from the lineDict,
         by using the values in the alRef_WP_groups
         """
         #
@@ -1757,7 +1757,7 @@ class cAtfALHandler(cAtfALTester):
         #
         lineDict = list(filter(lambda Ldicts: Ldicts.get("lineNumber") == alRef_WP_group[0][2], lineDict_list))[0]
         # Gets the lineDict from the lineDict list for the relative
-        # al occurance
+        # al occurrence
         #
         alOc_words = []
         #
@@ -1795,7 +1795,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def get_singALOcS(self):
         """
-        Gets AL Occurances confined to a single
+        Gets AL Occurrences confined to a single
         line as list of AL word dictionary.
         """
         #
@@ -2058,7 +2058,7 @@ class cAtfWordDictBuilder(cAtfWordTester):
     def group_detRefs(self):
         """
         Groups the AL references for
-        marking the AL occurances
+        marking the AL occurrences
         """
         #
         det_ref_groups = self.grouper(self.detRef_general_list, 2)
@@ -2548,7 +2548,7 @@ class cAtfSignDictBuilder(cAtfSignTester):
     @staticmethod
     def get_OpLevelPosition(opDictList):
         """
-        Eliminates the duplicate occurances
+        Eliminates the duplicate occurrences
         for the operators. Only the
         highest level in which the
         operator occured is retained.
@@ -3141,7 +3141,7 @@ class cAtfTextBuilder(object):
         Regroups the lines
         belonging to the part in
         string form for handling
-        Another Language Occurances
+        Another Language Occurrences
         """
         #
         partLines = textPart[1:]
@@ -3155,7 +3155,7 @@ class cAtfTextBuilder(object):
         """
         Passes the textPart_str to AL
         handler for getting Another Language
-        occurances
+        occurrences
         """
         #
         alClass = cAtfALHandler(textPart_str)
@@ -3249,9 +3249,9 @@ class cAtfTextBuilder(object):
         part_string = self.textPartString(textPart)
         part_dict["part_partString"] = part_string
         partlines = textPart[1:]
-        alOccurances = self.get_ALs(part_string)
-        # pass text language to al occurances TODO
-        part_dict["part_AL_occurances"] = alOccurances
+        alOccurrences = self.get_ALs(part_string)
+        # pass text language to al occurrences TODO
+        part_dict["part_AL_occurrences"] = alOccurrences
         # and the Adventure of Iteration starts ...
         partLine_dict_list = []
         for line in partlines:
@@ -3725,11 +3725,11 @@ class cAtfTextBuilder(object):
         self.catf_text_dict["text_totalLineCount"] = lineCount[-1]["text_RelLinePosition"] + 1
         # Total length is equal to last item position + 1 for compensating zero indexing
         wordCount = self.catf_text_dict["text_RelWordPositions"]
-        self.catf_text_dict["text_totalWordOccuranceCount"] = wordCount[-1]["text_RelWordPosition"] + 1
-        # Counts the each occurance of a word. Doesn't filter anything
+        self.catf_text_dict["text_totalWordOccurrenceCount"] = wordCount[-1]["text_RelWordPosition"] + 1
+        # Counts the each occurrence of a word. Doesn't filter anything
         signCount = self.catf_text_dict["text_RelSignPositions"]
-        self.catf_text_dict["text_totalSignOccuranceCount"] = signCount[-1]["text_RelSignPosition"] + 1
-        # Count for the each occurance of a sign. Doesn't filter anything.
+        self.catf_text_dict["text_totalSignOccurrenceCount"] = signCount[-1]["text_RelSignPosition"] + 1
+        # Count for the each occurrence of a sign. Doesn't filter anything.
         #
         return self.catf_text_dict
     #
