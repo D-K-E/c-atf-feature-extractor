@@ -153,7 +153,7 @@ Each determinative of the word is a tuple, which contains dictionaries represent
 Apart from the 'is' versions of the sign features indicated in word level, ex. isDamaged instead of hasDamage. Sign dictionary has the following
 information keys:
 
-- sign\_isPartOfCompound: Boolean value. True if the sign is part of a compound sign, ex. KA in KAxKA.
+- sign\_isPartOfCompound: Boolean value. True if the sign is part of a compound sign, ex. KA in KAxIR2.
 - sign\_nestLevel: Stores the nest level of the sign if the sign is contained in a compound sign involving groups, ex. 1 for KA in IR3x(AN.KA). The complete compound sign is considered as the 0 and each balanced parentheses is counted as a nest indicator.
 - sign\_relatedSigns: Stores a dictionary. Its keys will be explained below.
 - sign\_sign: Stores the string representation of the sign.
