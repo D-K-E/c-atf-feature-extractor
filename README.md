@@ -1,7 +1,7 @@
 # c-atf-feature-extractor
 A Preprocessor for C-ATF files
 
-The extractor is pure python. It takes a c-atf text and spits out a huge python heavily nested dictionary. An api would be available for facilitating the usage of it. 
+The extractor is pure python. It takes a c-atf text and spits out a huge python heavily nested dictionary. An api would be available in the future for facilitating the usage of it by humans 
 
 **The Resulting dictionary contains the following information with regard to text**:
 
