@@ -25,8 +25,6 @@ import ast
 with open("Modified_P462811.txt","r",encoding="utf-8", newline="\n") as f:
     test_file = f.read()
 
-
-
 class testCatfFeatExtractor(unittest.TestCase):
     """
     Test Functions for cAtfFeatExtractor
