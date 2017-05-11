@@ -20,7 +20,6 @@ __license__ = "MIT, see LICENSE"
 # -----------------------------------------
 
 
-
 class cAtfLineTester(object):
     """
     a class for testing lines of c-atf texts
@@ -168,7 +167,8 @@ class cAtfALTester(object):
         else:
             return False
     #
-    def test_ALHasFolSign(self,al_oc):
+    #
+    def test_ALHasFolSign(self, al_oc):
         """
         params: atf_line, str.
         return: boolean
@@ -184,8 +184,7 @@ class cAtfALTester(object):
             return False
     #
     #
-    @staticmethod
-    def test_ALSwitch(cAtf_alWord):
+    def test_ALSwitch(self, cAtf_alWord):
         """
         params: atf_logogram, str.
         return: boolean
@@ -200,8 +199,48 @@ class cAtfALTester(object):
             return False
 
 
-# -----------------------------------------
+def test_wordHasAnotherLanguage(atf_word):
+    """
+    params: atf_word, str.
+    return: boolean
+    """
+    #
+    find_logogram = re.search("_.*?_", atf_word)
+    #
+    if find_logogram is None:
+        return False
+    else:
+        return True
 
+"""
+Logogram bölgesinden
+dil değiştiriciyi al
+ondan sonra onun içindeki
+işaretleri aldığın dilde
+kodla
+"""
+
+
+"""
+If logogram has more than one space
+divide from the space and check if there is
+more than two signs -
+
+if the logograme has space
+see if there is a phonetic complement of the logogramme after the _
+
+see if the logogramme has a sign following
+or preeceding it.
+
+see 
+
+uppercase = unknown reading.
+
+"""
+
+# Word level Tests
+
+# Sign Level Tests -------------------------------
 
 class cAtfWordTester(object):
     """
@@ -444,7 +483,7 @@ class cAtfWordTester(object):
             return False
         #
     #
-    def test_has_composite(self):
+    def test_has_compound(self):
         """
         Returns true if the sign
         has |
@@ -699,7 +738,7 @@ class cAtfSignTester(object):
         +
         """
         #
-        if self.test_String("+", self.catf_sign) and self.test_isComposite():
+        if self.test_String("+", self.catf_sign) and self.test_isCompound():
             return True
         else:
             return False
@@ -716,7 +755,7 @@ class cAtfSignTester(object):
             return False
         #
     #
-    def test_isComposite(self):
+    def test_isCompound(self):
         """
         Returns true if the self.catf_sign
         has |
@@ -991,6 +1030,16 @@ class cAtfSignTester(object):
     #
 
 
+
+
+
+
+
+
+
+
+# -------------------------------------------
+
 class cAtfLineGetter(cAtfLineTester):
     """
     a class for getting text lines
@@ -1036,7 +1085,7 @@ class cAtfLineGetter(cAtfLineTester):
         """
         Checks the line for id syntax.
         Gets the id alternatives
-        separated with the "=".
+       separated with the "=".
         """
         #
         atf_line = self.cAtf_line
@@ -1312,7 +1361,7 @@ class cAtfLineDictBuilder(cAtfLineGetter):
 
 class cAtfALHandler(cAtfALTester):
     """
-    Handle Another Language occurrences.
+    Handle Another Language occurances.
     """
     #
     def __init__(self, cAtf_part):
@@ -1445,7 +1494,7 @@ class cAtfALHandler(cAtfALTester):
     def group_ALRefs(self):
         """
         Groups the AL references for
-        marking the AL occurrences
+        marking the AL occurances
         """
         #
         al_ref_groups = self.grouper(self.alRef_list, 2)
@@ -1462,7 +1511,7 @@ class cAtfALHandler(cAtfALTester):
         return: boolean
         Tests if the AL references
         stocked in the al group
-        points to a AL occurrence
+        points to a AL occurance
         that spreads into multiple
         lines
         """
@@ -1484,7 +1533,7 @@ class cAtfALHandler(cAtfALTester):
         return: boolean
         Tests if the AL references
         stocked in the al group
-        points to a AL occurrence
+        points to a AL occurance
         that is confined to 1 line
         """
         #
@@ -1501,7 +1550,7 @@ class cAtfALHandler(cAtfALTester):
     def populate_mulALOC_refs(self):
         """
         Populates the multiline
-        AL occurrence reference list.
+        AL occurance reference list.
         """
         #
         self.mulAlOc_group_list = []
@@ -1518,7 +1567,7 @@ class cAtfALHandler(cAtfALTester):
     def populate_singALOC_refs(self):
         """
         Populates the single line
-        AL occurrence reference list.
+        AL occurance reference list.
         """
         #
         self.singAlOc_group_list = []
@@ -1555,7 +1604,7 @@ class cAtfALHandler(cAtfALTester):
     def get_mulAlOc_lineDict_list(self):
         """
         Gets the related lineDicts for
-        AL occurrences that spread to multiple lines
+        AL occurances that spread to multiple lines
         """
         #
         self.mulAlOc_lineDict_list = []
@@ -1571,7 +1620,7 @@ class cAtfALHandler(cAtfALTester):
     def get_FW_mulAlOc(mulAlOc_group):
         """
         Gets the First Word and its position of the
-        AL Occurrence that spreads to multiple
+        AL Occurance that spreads to multiple
         lines.
         """
         #
@@ -1594,7 +1643,7 @@ class cAtfALHandler(cAtfALTester):
     def get_LW_mulAlOc(mulAlOc_group):
         """
         Gets the Last Word and its position of
-        the AL Occurrence that spreads to multiple
+        the AL Occurance that spreads to multiple
         lines
         """
         #
@@ -1615,7 +1664,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def get_ALOC_lang(self,alOc):
         """
-        Gets the AL occurrence language
+        Gets the AL occurance language
         if it has one specified with
         %,
         if not, we get the specified AL language
@@ -1638,11 +1687,11 @@ class cAtfALHandler(cAtfALTester):
         last_item, ()
         mulAlOc_group, [{},{}, ... ]
 
-        Creates multiline AL Occurrence from the parameters.
-        alWord_word, str. Another Language word in AL_occurrence
+        Creates multiline AL Occurance from the parameters.
+        alWord_word, str. Another Language word in AL_occurance
         alWord_LineNumber, int. The line number for the al_word
-        alWord_AlOc_Position, dict. Relative position of the alWord inside the AL_occurrence.
-        alWord_AlOc, str. Al_occurrence in which the al_word is observed
+        alWord_AlOc_Position, dict. Relative position of the alWord inside the AL_occurance.
+        alWord_AlOc, str. Al_occurance in which the al_word is observed
         alWord_AlOc_LineNumber, list. Line number(s) in which the al_oc is observed
         alWord_LinePosition, dict. Relative position of the alWord inside the Line.
 
@@ -1698,7 +1747,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def get_mulAlOcS(self):
         """
-        Gets the AL Occurrences that spread into multiple lines
+        Gets the AL Occurances that spread into multiple lines
         as lists of another language word dictionary
         """
         #
@@ -1718,7 +1767,7 @@ class cAtfALHandler(cAtfALTester):
         """
         params: lineWP, ()
         Gets the starting point and
-        end point of the AL Occurrence observed
+        end point of the AL Occurance observed
         in a single line
 
         """
@@ -1734,7 +1783,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def group_ALRef_sing_Wordlevel(self, alRef_WP_list):
         """
-        groups the AL occurrence references
+        groups the AL occurance references
         observed in a single line
         """
         #
@@ -1746,7 +1795,7 @@ class cAtfALHandler(cAtfALTester):
         """
         params: lineDict, {}
         alRef_WP_group, ()
-        Creates the AL occurrence from the lineDict,
+        Creates the AL occurance from the lineDict,
         by using the values in the alRef_WP_groups
         """
         #
@@ -1757,7 +1806,7 @@ class cAtfALHandler(cAtfALTester):
         #
         lineDict = list(filter(lambda Ldicts: Ldicts.get("lineNumber") == alRef_WP_group[0][2], lineDict_list))[0]
         # Gets the lineDict from the lineDict list for the relative
-        # al occurrence
+        # al occurance
         #
         alOc_words = []
         #
@@ -1795,7 +1844,7 @@ class cAtfALHandler(cAtfALTester):
     #
     def get_singALOcS(self):
         """
-        Gets AL Occurrences confined to a single
+        Gets AL Occurances confined to a single
         line as list of AL word dictionary.
         """
         #
@@ -2058,7 +2107,7 @@ class cAtfWordDictBuilder(cAtfWordTester):
     def group_detRefs(self):
         """
         Groups the AL references for
-        marking the AL occurrences
+        marking the AL occurances
         """
         #
         det_ref_groups = self.grouper(self.detRef_general_list, 2)
@@ -2297,7 +2346,7 @@ class cAtfWordDictBuilder(cAtfWordTester):
         self.wordDict["word_numberDict"] = self.set_numberDict()
         self.wordDict["word_hasComplement"] = self.test_has_complement()
         self.wordDict["word_hasUnknownReading"] = self.test_has_unknownReading()
-        self.wordDict["word_hasComposite"] = self.test_has_composite()
+        self.wordDict["word_hasCompound"] = self.test_has_compound()
         self.wordDict["word_hasSpecification"] = self.test_has_specification()
         self.wordDict["word_hasQuery"] = self.test_has_query()
         self.wordDict["word_hasCollation"] = self.test_has_collation()
@@ -2376,7 +2425,7 @@ class cAtfSignDictBuilder(cAtfSignTester):
         super().__init__(catf_sign)
         self.catf_sign = catf_sign
         self.signDict = {}
-        self.compositeSign = ""
+        self.compoundSign = ""
         self.prnthsPosition_list = []
         self.sign_dict_list = []
         self.signRelation_dict_list = []
@@ -2391,32 +2440,32 @@ class cAtfSignDictBuilder(cAtfSignTester):
     Karmaşık işaretlerden de oluşuyor olabilirler.
     """
     #
-    def get_compositeSign(self):
+    def get_compoundSign(self):
         """
-        Gets the composite sign.
+        Gets the compound sign.
         """
         #
-        if self.test_isComposite() is True:
-            composite_sign_search = re.search("\|.*?\|", self.catf_sign)
+        if self.test_isCompound() is True:
+            compound_sign_search = re.search("\|.*?\|", self.catf_sign)
             self.signDict["sign_isDamaged"] = self.test_isDamaged()
             # This test is done here because
             # C-ATF treates compound signs as atoms
             # If one would like to extend this extractor to
             # O-ATF then this has to moved to elsewhere.
-            composite_sign = composite_sign_search.group(0)
-            self.compositeSign = composite_sign[1:-1]
+            compound_sign = compound_sign_search.group(0)
+            self.compoundSign = compound_sign[1:-1]
             # 1 - -1 for getting rid of | on both sides
         else:
             pass
         #
-        return self.compositeSign
+        return self.compoundSign
     #
     @staticmethod
     def get_nestElements(nestedString):
         """
         Generates the paranthese content
         with its associated level
-        if the composite sign is nested.
+        if the compound sign is nested.
 
         Code adapted from SO:
         author: Gareth Rees
@@ -2427,7 +2476,7 @@ class cAtfSignDictBuilder(cAtfSignTester):
         #
         paren_stack = []
         for i, char in enumerate(nestedString):
-            # Ex. CompositeSign == |AN.(ANxAN)&((AN.AN)%AN)|
+            # Ex. CompoundSign == |AN.(ANxAN)&((AN.AN)%AN)|
             if char == "(":
                 paren_stack.append(i)
                 # Adds the position of (
@@ -2548,7 +2597,7 @@ class cAtfSignDictBuilder(cAtfSignTester):
     @staticmethod
     def get_OpLevelPosition(opDictList):
         """
-        Eliminates the duplicate occurrences
+        Eliminates the duplicate occurances
         for the operators. Only the
         highest level in which the
         operator occured is retained.
@@ -2570,7 +2619,7 @@ class cAtfSignDictBuilder(cAtfSignTester):
     def get_SignRelationBS(self,
                            operatorPos_level_list,
                            nestLevel_dict_list,
-                           compositeSign):
+                           compoundSign):
         """
         Gets the sign or sign groups that
         are associated with each other through
@@ -2606,8 +2655,8 @@ class cAtfSignDictBuilder(cAtfSignTester):
                         signRelation_dict["SR_operator_subsq"] = opFolChars
                         signRelation_dict["SR_nest_level"] = nestLevel
                         signRelation_dict["SR_nest_content"] = nestContent
-                        signRelation_dict["SR_compositeSign"] = compositeSign
-                        signRelation_dict["SR_nest_range"] = nestRange
+                        signRelation_dict["SR_compoundSign"] = compoundSign
+                        signRelation_dict["SR_nest_range"] = [nestRange[0], nestRange[-1]]
                         if "(" in opPrecChars and ")" in opPrecChars and ")" in opFolChars and "(" in opFolChars:
                             signRelation_dict["SR_relation_type"] = {"operator_antecedent":"Group", "operator_subsequent":"Group"}
                         elif "(" in opPrecChars and ")" in opPrecChars and ")" not in opFolChars and not "(" in opFolChars:
@@ -2621,13 +2670,13 @@ class cAtfSignDictBuilder(cAtfSignTester):
                             signRelation_dict["SR_operator_type"] = "crossing"
                         elif operator == "&":
                             signRelation_dict["SR_operator_type"] = "above"
-                        signRelation_dict["SR_operator_antec_range"] = opPrecedents
-                        signRelation_dict["SR_operator_subseq_range"] = opFollowers
+                        signRelation_dict["SR_operator_antec_range"] = [opPrecedents[0],opPrecedents[-1]]
+                        signRelation_dict["SR_operator_subseq_range"] = [opFollowers[0],opFollowers[-1]]
                         self.signRelation_dict_list.append(signRelation_dict)
         #
         return self.signRelation_dict_list
     #
-    def get_SignRelationSpeCases(self,operatorPos_level_list, nestLevel_dict_list, compositeSign):
+    def get_SignRelationSpeCases(self,operatorPos_level_list, nestLevel_dict_list, compoundSign):
         """
         Gets the sign or sign groups that
         are associated with each other through
@@ -2660,8 +2709,8 @@ class cAtfSignDictBuilder(cAtfSignTester):
                     signRelation_dict["SR_operator_subsq"] = opFolChars
                     signRelation_dict["SR_nest_level"] = nestLevel
                     signRelation_dict["SR_nest_content"] = nestContent
-                    signRelation_dict["SR_compositeSign"] = compositeSign
-                    signRelation_dict["SR_nest_range"] = nestRange
+                    signRelation_dict["SR_compoundSign"] = compoundSign
+                    signRelation_dict["SR_nest_range"] = [nestRange[0],nestRange[-1]]
                     if "(" in opPrecChars and ")" in opPrecChars and ")" in opFolChars and "(" in opFolChars:
                         signRelation_dict["SR_relation_type"] = {"operator_antecedent":"Group", "operator_subsequent":"Group"}
                     elif "(" in opPrecChars and ")" in opPrecChars and ")" not in opFolChars and not "(" in opFolChars:
@@ -2671,8 +2720,8 @@ class cAtfSignDictBuilder(cAtfSignTester):
                     elif "(" not in opPrecChars and ")" not in opPrecChars and ")" not in opFolChars and "(" not in opFolChars:
                         signRelation_dict["SR_relation_type"] = {"operator_antecedent":"Sign", "operator_subsequent":"Sign"}
                     signRelation_dict["SR_operator_position"] = operatorPos
-                    signRelation_dict["SR_operator_antec_range"] = opPrecedents
-                    signRelation_dict["SR_operator_subseq_range"] = opFollowers
+                    signRelation_dict["SR_operator_antec_range"] = [opPrecedents[0], opPrecedents[-1]]
+                    signRelation_dict["SR_operator_subseq_range"] = [opFollowers[0], opFollowers[-1]]
                     if operator == ".":
                         signRelation_dict["SR_operator_type"] = "beside"
                     elif operator == "+":
@@ -2702,10 +2751,9 @@ class cAtfSignDictBuilder(cAtfSignTester):
         #
         return self.signRelation_dict_list
     #
-    @staticmethod
-    def get_unNestedCompSigns(compositeSign, opPosition_list):
+    def get_unNestedCompSigns(self, compoundSign, opPosition_list):
         """
-        gets the signs of composite sign
+        gets the signs of compound sign
         that is not nested.
         """
         #
@@ -2714,18 +2762,19 @@ class cAtfSignDictBuilder(cAtfSignTester):
         for opPos in opPosition_list:
             opP = opPos[0]
             opChar = opPos[1]
-            opAnte = compositeSign[:opP]
-            opSubseq = compositeSign[opP:]
+            opAnte = compoundSign[:opP]
+            opSubseq = compoundSign[opP:]
             signRelation_dict = {}
             signRelation_dict["SR_operator"] = opChar
             signRelation_dict["SR_operator_antec"] = opAnte
             signRelation_dict["SR_operator_subsq"] = opSubseq[1:]
             # 1 for excluding the operator in mapping
-            signRelation_dict["SR_compositeSign"] = compositeSign
+            signRelation_dict["SR_compoundSign"] = compoundSign
             signRelation_dict["SR_nest_level"] = 0
-            signRelation_dict["SR_nest_content"] = compositeSign
-            signRelation_dict["SR_nest_range"] = list(range(0,len(compositeSign)))
+            signRelation_dict["SR_nest_content"] = compoundSign
+            compoundSignRange = list(range(0,len(compoundSign)))
 
+            signRelation_dict["SR_nest_range"] = [compoundSignRange[0], compoundSignRange[-1]]
             signRelation_dict["SR_operator_position"] = opP
             signRelation_dict["SR_relation_type"] = {"operator_antecedent":"Sign", "operator_subsequent":"Sign"}
             if opChar == "%":
@@ -2755,8 +2804,12 @@ class cAtfSignDictBuilder(cAtfSignTester):
                         continue
                     else:
                         signRelation_dict["SR_operator_type"] = "opposing"
-            signRelation_dict["SR_operator_antec_range"] = list(range(0, opP))
-            signRelation_dict["SR_operator_subseq_range"] = list(range(opP, len(compositeSign)))
+            signRelation_dict["SR_operator_antec_range"] = [0, opP-1]
+            # -1 for stimulating the
+            # the range behaviour, as in
+            # range(0, opP)
+            signRelation_dict["SR_operator_subseq_range"] = [opP, len(compoundSign) - 1]
+            # -1 again for stimulating the range behaviour
             #
             self.signRelation_dict_list.append(signRelation_dict)
         #
@@ -2865,10 +2918,10 @@ class cAtfSignDictBuilder(cAtfSignTester):
         signDict["sign_isHorReflected"] = tester_class.test_isHorReflected()
         signDict["sign_isVariant"] = tester_class.test_isVariant()
         signDict["sign_isRotated"] = tester_class.test_isRotated()
-        #signDict["sign_isPartOfComposite"] = test_isComposite()
-        #signDict["sign_nestLevel"] = 0 Composite değilse
-        #signDict["sign_isUnknownReading"] = test_isUnknownReading() # Composite değilse
-        #signDict["sign_relatedSigns"] = {} # Buraya composite
+        #signDict["sign_isPartOfCompound"] = test_isCompound()
+        #signDict["sign_nestLevel"] = 0 Compound değilse
+        #signDict["sign_isUnknownReading"] = test_isUnknownReading() # Compound değilse
+        #signDict["sign_relatedSigns"] = {} # Buraya compound
         # işaretleri oluşturan liste eklenecek
         return signDict
     #
@@ -2879,11 +2932,11 @@ class cAtfSignDictBuilder(cAtfSignTester):
         #
         sign_dict_list = []
         #
-        if self.test_isComposite() is True and self.test_isSpecification() is True:
-            # Basically it is a nested composite sign
-            compositeSign = self.get_compositeSign()
-            nestedElements = self.get_nestElements(compositeSign)
-            opPositonList = self.get_OpPositions(compositeSign)
+        if self.test_isCompound() is True and self.test_isSpecification() is True:
+            # Basically it is a nested compound sign
+            compoundSign = self.get_compoundSign()
+            nestedElements = self.get_nestElements(compoundSign)
+            opPositonList = self.get_OpPositions(compoundSign)
             nestList = list(nestedElements)
             nestLevelDictList = self.get_nestLevelDict(nestList)
             nest_dict = self.get_nestDict(nestList)
@@ -2896,12 +2949,12 @@ class cAtfSignDictBuilder(cAtfSignTester):
             SR_dictList_BS = self.get_SignRelationBS(
                 opLvlPosition,
                 nestLevelDictList,
-                compositeSign
+                compoundSign
             )
             SR_dictList_SCases = self.get_SignRelationSpeCases(
                 opLvlPosition,
                 nestLevelDictList,
-                compositeSign
+                compoundSign
             )
             SR_dictList = SR_dictList_SCases + SR_dictList_BS
             compoundSign_SR_lists_brut = [self.get_signsSR(SignDict) for SignDict in SR_dictList]
@@ -2914,56 +2967,56 @@ class cAtfSignDictBuilder(cAtfSignTester):
                 for signElement in compoundSignList:
                     if not isinstance(signElement, dict):
                         self.signDict = self.signDictBuild(signElement)
-                        self.signDict["sign_isPartOfComposite"] = True
+                        self.signDict["sign_isPartOfCompound"] = True
                         self.signDict["sign_isUnknownReading"] = False
                         self.signDict["sign_relatedSigns"] = SR_dict
                         self.signDict["sign_nestLevel"] = SR_dict["SR_nest_level"]
-                        self.signDict["sign_compositeSign"] = SR_dict["SR_compositeSign"]
+                        self.signDict["sign_compoundSign"] = SR_dict["SR_compoundSign"]
                         sign_dict_list.append(self.signDict)
         # Compound Nested DONE
         #
-        elif self.test_isComposite() is True and self.test_isSpecification() is False:
+        elif self.test_isCompound() is True and self.test_isSpecification() is False:
             # Compound Not Nested
-            compositeSign = self.get_compositeSign()
-            opPositonList = self.get_OpPositions(compositeSign)
+            compoundSign = self.get_compoundSign()
+            opPositonList = self.get_OpPositions(compoundSign)
             unNestedList = self.get_unNestedCompSigns(
-                compositeSign, opPositonList
+                compoundSign, opPositonList
             )
             compoundSign_SR_lists = [self.get_signsSR(SignDict) for SignDict in unNestedList]
             for compoundSignList in compoundSign_SR_lists:
                 SR_dict = compoundSignList.pop()
                 for signElement in compoundSignList:
                     self.signDict = self.signDictBuild(signElement)
-                    self.signDict["sign_isPartOfComposite"] = True
+                    self.signDict["sign_isPartOfCompound"] = True
                     self.signDict["sign_isUnknownReading"] = False
                     self.signDict["sign_relatedSigns"] = SR_dict
                     self.signDict["sign_nestLevel"] = SR_dict["SR_nest_level"]
-                    self.signDict["sign_compositeSign"] = SR_dict["SR_compositeSign"]
+                    self.signDict["sign_compoundSign"] = SR_dict["SR_compoundSign"]
                     sign_dict_list.append(self.signDict)
                     #
         # Compound not Nested DONE
         #
-        elif self.test_isComposite() is False and self.test_isComplement() is True:
+        elif self.test_isCompound() is False and self.test_isComplement() is True:
             # Not a Compound Sign but is a complement
             complementSignList = self.get_signComplement(sign)
             for complementSign in complementSignList:
                 self.signDict = self.signDictBuild(complementSign)
-                self.signDict["sign_isPartOfComposite"] = False
+                self.signDict["sign_isPartOfCompound"] = False
                 self.signDict["sign_isUnknownReading"] = self.test_isUnknownReading(sign)
                 self.signDict["sign_relatedSigns"] = {} # TODO get Related Sign for Complement Signs
                 self.signDict["sign_nestLevel"] = 0
-                self.signDict["sign_compositeSign"] = ""
+                self.signDict["sign_compoundSign"] = ""
                 sign_dict_list.append(self.signDict)
         # Complement sign DONE
         #
-        elif self.test_isComplement() is False and self.test_isComposite() is False:
+        elif self.test_isComplement() is False and self.test_isCompound() is False:
             self.signDict = self.signDictBuild(self.catf_sign)
-            self.signDict["sign_isPartOfComposite"] = False
+            self.signDict["sign_isPartOfCompound"] = False
             self.signDict["sign_isUnknownReading"] = self.test_isUnknownReading()
             self.signDict["sign_isDamaged"] = self.test_isDamaged()
             self.signDict["sign_relatedSigns"] = {} # TODO get Related Sign
             self.signDict["sign_nestLevel"] = 0
-            self.signDict["sign_compositeSign"] = ""
+            self.signDict["sign_compoundSign"] = ""
             sign_dict_list.append(self.signDict)
         #
         return sign_dict_list
@@ -2994,6 +3047,7 @@ class cAtfTextBuilder(object):
         self.objectPartLines_list = []
         self.objectTextParts = []
         self.textPart_dict_list = []
+        self.textPartsHierarchy = []
     #
     # Section Methods
     #
@@ -3048,7 +3102,7 @@ class cAtfTextBuilder(object):
         #
         return self.objectPartLines_list
     #
-    def get_ObjetIdPart(self):
+    def get_ObjectIdPart(self):
         """
         Gets the part in which
         the id of the text occurs
@@ -3120,6 +3174,115 @@ class cAtfTextBuilder(object):
         #
         return self.objectTextParts
     #
+    @staticmethod
+    def get_single_lines(textParts):
+        """
+        Gets the list with single elements
+        it is used for isolating
+        structures like
+        @surface a
+        @scene 1
+        Which usually preceedes
+        textual content.
+        """
+        #
+        single_line_list = []
+        #
+        for i in range(len(textParts)):
+            if len(textParts[i]) == 1 and textParts[i][0].startswith("@",0,2):
+                single_line_list.append(i)
+        #
+        single_line_list.append(len(textParts))
+        #
+        return single_line_list
+    #
+    @staticmethod
+    def set_textRange_list(single_line_list):
+        """
+        Takes the single line list
+        and sets the text range, that is,
+        divisions with textual content,
+        like
+        @column 1,\n 1. an-il etc.
+        Which are represented in
+        between the elements of the single line list.
+        We take thus the elements of the single line list
+        as the markers of the beginning and end of the division with
+        textual content.
+        """
+        #
+        range_list = []
+        #
+        for no in range(len(single_line_list)):
+            # [0, 3, 6, 7,9] -> no == index of the elements
+            if no + 1 < len(single_line_list):
+                if single_line_list[no+1] - single_line_list[no] > 1:
+                    # Ex. 3 - 1 or 9 - 7
+                    char_range = list(range(single_line_list[no], single_line_list[no+1]))
+                    # [0, 3, 6, 7,9] -> range(0,3), range(3,6), range(7,9)
+                    char_range.append(single_line_list[no+1])
+                    # The last element will be searched in the next range.
+                    # afterwards
+                    range_list.append(char_range)
+        #
+        return range_list
+    #
+    @staticmethod
+    def get_partHierarchy(range_list):
+        """
+        Sets additional ranges for marking the hierarchy.
+        For example, in previous method, the part which is
+        attributed to the lines 6-9 was not included.
+        We are going to include that now. And sort the
+        list so that the part hierarchies become apparent.
+        In a document which has single line list of
+        [0, 3, 6, 7,9]
+        The part 6-9 clearly is a superior division and
+        7-9 is a subdivision of the superior division.
+        """
+        #
+        new_range_list = []
+        #
+        for no in range(len(range_list)):
+            if no + 1 < len(range_list):
+                char_range_list = range_list[no]
+                # Ex.[0,1,2,3] in [[0, 1, 2, 3], [3, 4, 5, 6], [7, 8, 9]]
+                char_range_2_list = range_list[no+1]
+                # Ex. [3, 4, 5, 6] in same.
+                lastCharacter = char_range_list.pop()
+                # Ex. 3 in [0,1,2,3]
+                #
+                if lastCharacter not in char_range_2_list:
+                    # Ex. 6 not in [7, 8, 9]
+                    new_range_list.append(char_range_2_list)
+                    lastCharacter_2 = char_range_2_list.pop()
+                    # Ex. 9 in [7, 8, 9]
+                    newRange = list(range(lastCharacter,lastCharacter_2))
+                    new_range_list.append(newRange)
+                    # newRange == [6,7,8]
+                else:
+                    new_range_list.append(char_range_list)
+                    new_range_list.append(char_range_2_list)
+        #
+        new_sorted_range = sorted(new_range_list, key=lambda x:x[0])
+        # Ex. [[0, 1, 2], [3, 4, 5], [6, 7, 8], [7, 8]]
+        #
+        return new_sorted_range
+    #
+    def set_partHierarchy(self):
+        """
+        Wraps the staticmethods
+        and sets the part hierarchy
+        that is going to be used later on
+        with partdicts
+        """
+        #
+        singlelines = self.get_single_lines(self.objectTextParts)
+        textRange_list = self.set_textRange_list(singlelines)
+        self.textPartsHierarchy = self.get_partHierarchy(textRange_list)
+        #
+        return self.textPartsHierarchy
+    #
     def set_text_PartInfo(self):
         """
         Sets what we have so far
@@ -3141,7 +3304,7 @@ class cAtfTextBuilder(object):
         Regroups the lines
         belonging to the part in
         string form for handling
-        Another Language Occurrences
+        Another Language Occurances
         """
         #
         partLines = textPart[1:]
@@ -3155,7 +3318,7 @@ class cAtfTextBuilder(object):
         """
         Passes the textPart_str to AL
         handler for getting Another Language
-        occurrences
+        occurances
         """
         #
         alClass = cAtfALHandler(textPart_str)
@@ -3249,9 +3412,9 @@ class cAtfTextBuilder(object):
         part_string = self.textPartString(textPart)
         part_dict["part_partString"] = part_string
         partlines = textPart[1:]
-        alOccurrences = self.get_ALs(part_string)
-        # pass text language to al occurrences TODO
-        part_dict["part_AL_occurrences"] = alOccurrences
+        alOccurances = self.get_ALs(part_string)
+        # pass text language to al occurances TODO
+        part_dict["part_AL_occurances"] = alOccurances
         # and the Adventure of Iteration starts ...
         partLine_dict_list = []
         for line in partlines:
@@ -3286,7 +3449,7 @@ class cAtfTextBuilder(object):
         # Text is splited into parts
         self.splitLinesOParts()
         # Each object part is splited into lines
-        self.get_ObjetIdPart()
+        self.get_ObjectIdPart()
         # The part in which one observes the object id
         # is seperated
         self.get_text_id()
@@ -3725,12 +3888,11 @@ class cAtfTextBuilder(object):
         self.catf_text_dict["text_totalLineCount"] = lineCount[-1]["text_RelLinePosition"] + 1
         # Total length is equal to last item position + 1 for compensating zero indexing
         wordCount = self.catf_text_dict["text_RelWordPositions"]
-        self.catf_text_dict["text_totalWordOccurrenceCount"] = wordCount[-1]["text_RelWordPosition"] + 1
-        # Counts the each occurrence of a word. Doesn't filter anything
+        self.catf_text_dict["text_totalWordOccuranceCount"] = wordCount[-1]["text_RelWordPosition"] + 1
+        # Counts the each occurance of a word. Doesn't filter anything
         signCount = self.catf_text_dict["text_RelSignPositions"]
-        self.catf_text_dict["text_totalSignOccurrenceCount"] = signCount[-1]["text_RelSignPosition"] + 1
-        # Count for the each occurrence of a sign. Doesn't filter anything.
+        self.catf_text_dict["text_totalSignOccuranceCount"] = signCount[-1]["text_RelSignPosition"] + 1
+        # Count for the each occurance of a sign. Doesn't filter anything.
         #
         return self.catf_text_dict
     #
-
