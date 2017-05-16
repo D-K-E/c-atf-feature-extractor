@@ -1,7 +1,7 @@
 # c-atf-feature-extractor
 A Preprocessor for C-ATF files
 
-The extractor is pure python. It takes a c-atf text and spits out a huge python heavily nested dictionary. An api would be available in the future for facilitating the usage of it by humans.   
+The extractor is pure python as in only\_uses\_four\_standard\_modules:\_itertools\_re\_ast\_unittest\_aka\_as\_light\_as\_it\_gets. It takes a c-atf text and spits out a huge python heavily nested dictionary. An api would be available in the future for facilitating the usage of it by humans.   
 
 **The Preprocessor is in its alpha stage, don't use it for scholarly work yet. Closing of the issue entitled #3 known issues would mark the beta stage. By then you can use it for scholarly work. The rest of the developpement would be made from the cltk repository.**
 
