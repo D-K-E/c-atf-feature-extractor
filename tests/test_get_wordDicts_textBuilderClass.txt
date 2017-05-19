@@ -1,5 +1,11 @@
-{'word_Signs': ['tisz', 'la', 'szal'],
- 'word_determinatives': [],
+{'word_Signs': ['{ud}', 'szud', 'ak'],
+ 'word_determinatives': [({'detSign_DetPosition': {'detSign_position': 0,
+     'totalSigns_determinative': 1},
+    'detSign_WordPosition': {'detSign_position': 2, 'totalSigns_word': 3},
+    'detSign_det': '{ud}',
+    'detSign_detMark': 'postpos',
+    'detSign_detSign': '{ud}',
+    'detSign_det_WordPos': (2, 2)},)],
  'word_hasAbove': False,
  'word_hasAllograph': False,
  'word_hasBeside': False,
@@ -40,7 +46,7 @@
  'word_isWordDivider': False,
  'word_numberDict': {},
  'word_punctuationDict': {},
- 'word_word': 'szal-la-tisz',
+ 'word_word': 'ak-szud{ud}',
  'word_wordLang': '',
  'word_wordSignCount': 3,
- 'word_wordSignsPos': [(0, 'szal'), (1, 'la'), (2, 'tisz')]}
+ 'word_wordSignsPos': [(0, 'ak'), (1, 'szud'), (2, '{ud}')]}
