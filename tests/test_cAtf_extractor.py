@@ -8,11 +8,21 @@ __license__ = "MIT License, see LICENSE"
 
 # Packages --------------------------
 
-import sys
+import os
 
-sys.path.append("../")
+current_dir = os.getcwd()
+
+os.chdir("../")
+
+# -----------------------------------------------
+# Import modules from main directory ----------
 
 from catf_feature_extractor.extractor import cAtfFeatExtractor
+
+
+# Return to Current Directory for importing texts
+
+os.chdir(current_dir)
 
 import unittest
 import ast
