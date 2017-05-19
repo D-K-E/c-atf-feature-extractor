@@ -32,8 +32,12 @@ import ast
 
 # Test File ----------------------------------
 
+print(os.getcwd())
+
 with open("Modified_P462811_reasonableText.txt","r",encoding="utf-8", newline="\n") as f:
     test_file = f.read()
+
+
 
 class testCatfFeatExtractor(unittest.TestCase):
     """
@@ -48,8 +52,10 @@ class testCatfFeatExtractor(unittest.TestCase):
         transliteration section which involves only
         one text.
         """
+        # DONE
         atf_section = self.textClass.get_atf_section()
         with open("atf_section.txt","r",encoding="utf-8", newline="\n") as test:
+#            test.write(atf_section)
             atf_read = test.read()
         #
         self.assertEqual(atf_section, atf_read)
@@ -59,6 +65,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         tests if we can get the object parts
         from the isolated section
         """
+        # DONE
         object_part_list = self.textClass.get_object_parts()
         with open("test_object_part_list_textBuilderClass.txt","r",encoding="utf-8", newline="\n") as part:
             objPart_list_str = part.read()
@@ -71,6 +78,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         Tests if the object parts in the list can be seperated
         correctly into lines.
         """
+        # DONE
         #
         object_part_line_list = self.textClass.splitLinesOParts()
         #
@@ -85,6 +93,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         Tests the isolation of the part in which the text
         has an id.
         """
+        # DONE
         #
         object_id_part = self.textClass.get_ObjectIdPart()
         part_list = ['&P462811 = RINAP 3/1 Sennacherib 03 composite ', 'atf: lang akk ']
@@ -95,6 +104,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         """
         Tests getting the id from id part.
         """
+        # DONE
         #
         object_id = self.textClass.get_text_id()
         oId = {'text_id': 'P462811',
@@ -106,6 +116,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         """
         test setting textLang attribute
         """
+        # DONE
         #
         textLang = self.textClass.set_textLang()
         text_lang = "akk"
@@ -116,6 +127,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         """
         test getting object type parts.
         """
+        # DONE
         #
         objectType = self.textClass.get_objectTypePart()
         object_type = "@object composite text"
@@ -128,6 +140,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         list
         """
         #
+        # DONE
         textParts = self.textClass.get_textParts()
         # TODO Nested object parts should be dealt with
         # here
@@ -143,6 +156,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         tests getting the single lines in the
         text parts
         """
+        # DONE
         #
         with open("test_get_textParts_textBuilderClass.txt","r",encoding="utf-8", newline="\n") as f:
             checkTextParts = f.read()
@@ -158,6 +172,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         list.
         """
         #
+        # DONE
         single_line_list = [0, 3, 6, 7, 9]
         range_list = self.textClass.set_textRange_list(single_line_list)
         check_range_list = [[0, 1, 2, 3], [3, 4, 5, 6], [7, 8, 9]]
@@ -168,6 +183,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         """
         tests getting the part hierarchy from the range list
         """
+        # DONE
         #
         range_list = [[0, 1, 2, 3], [3, 4, 5, 6], [7, 8, 9]]
         # Notice the 3 is in i and i + 1, whereas 6 is only in i.
@@ -182,6 +198,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         Tests setting the part hierarchy, the wrapper method
         for the above methods.
         """
+        # DONE
         #
         partHierarchy = self.textClass.set_partHierarchy()
         check_partHierarchy = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [7, 8]]
@@ -193,6 +210,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         test for method which sets the info related to part
         to text_dict
         """
+        # DONE
         #
         part_info = self.textClass.set_text_PartInfo()
         check_part_info = {'text_id': 'P462811',
@@ -207,6 +225,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         Tests for method getting the str representation
         of the part.
         """
+        # DONE
         #
         textpart = ['@column 1',
                     '1. qe2-reb hur-sza2-a-ni zaq-ru-te _a-sza3_ nam-ra-s,i i-na _ansze-kur-ra_ ar-kab-ma _{gesz}gigir giri3-min_-ia i-na ti-ik-ka-a-te u2-sza2-asz2-szi asz2-ru szup-szu-qu i-na _giri3-min_-ia ri-ma-nisz at-tag-gisz',
@@ -221,6 +240,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         tests the part level Another Language getter.
         """
         #
+        # DONE
         part_str = """1. qe2-reb hur-sza2-a-ni zaq-ru-te _a-sza3_ nam-ra-s,i i-na _ansze-kur-ra_ ar-kab-ma _{gesz}gigir giri3-min_-ia i-na ti-ik-ka-a-te u2-sza2-asz2-szi asz2-ru szup-szu-qu i-na _giri3-min_-ia ri-ma-nisz at-tag-gisz\n2. {iri}e2-{disz}ki-lam-za-ah _iri_ dan-nu-ti-szu2-nu al-me ak-szud{ud} _ug3-mesz tur gal ansze-kur-ra-mesz {ansze}kunga-mesz ansze-mesz gu4-mesz_ u3 _us5-udu hi-a_ ul-tu qer-bi-szu u2-sze-s,a-am-ma szal-la-tisz am-nu"""
         test_als = self.textClass.get_ALs(part_str)
         #
@@ -261,11 +281,12 @@ class testCatfFeatExtractor(unittest.TestCase):
         """
         tests the sign dict builder for text builder
         """
+        # DONE
         #
         sign = "|AN.IR3.((BAR@t~a@TAM2@k~v).MESZ+AN)+AN|#"
         signDict = self.textClass.signDictBuilder(sign)
         #
-        with open("test_signDict_textClass.txt","r",encoding="utf-8", newline="\n") as f:
+        with open("test_signDictBuilder_textBuilderClass.txt","r",encoding="utf-8", newline="\n") as f:
             sign_dict_str = f.read()
             check_signDict = ast.literal_eval(sign_dict_str)
         #
@@ -275,6 +296,7 @@ class testCatfFeatExtractor(unittest.TestCase):
         """
         tests the sign dict builder for text builder
         """
+        # DONE
         #
         with open("test_wordDictBuilder_textBuilderClass.txt","r", encoding="utf-8", newline="\n") as f:
             word_dict_str = f.read()
@@ -293,14 +315,15 @@ class testCatfFeatExtractor(unittest.TestCase):
         """
         tests the word dict builder for text builder
         """
-        #
+        # TODO Test Fails change the second
+        # file to write then retry
         with open("test_lineDict_textBuilderClass.txt","r", encoding="utf-8", newline="\n") as f:
             line_dict_str = f.read()
             lineDict = ast.literal_eval(line_dict_str)
         #
         line_dict = self.textClass.get_WordDicts(lineDict)
         #
-        with open("test_get_wordDicts_textBuilder.txt","r", encoding="utf-8", newline="\n") as fi:
+        with open("test_get_wordDicts_textBuilderClass.txt","r", encoding="utf-8", newline="\n") as fi:
             check_line_dict_str = fi.read()
             check_line_dict = ast.literal_eval(check_line_dict_str)
         #
